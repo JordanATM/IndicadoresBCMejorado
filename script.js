@@ -136,7 +136,7 @@ document.addEventListener('DOMContentLoaded', () => {
         button.addEventListener('click', (event) => {
             event.stopPropagation();
             navigator.clipboard.writeText(formattedValueForCopy).then(() => {
-                showCopyFeedbackPopup('¡Valor Copiado!');
+                showCopyFeedbackPopup('¡Valor copiado!');
             }).catch(err => {
                 console.error('Error al copiar:', err);
                 showCopyFeedbackPopup('Error al copiar el valor.', true);
