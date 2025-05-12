@@ -120,6 +120,7 @@ body {
     align-items: center;
     justify-content: space-between;
     padding: 0 4px;
+    
 }
 body.dark-mode .slider {
     background-color: var(--primary-color);
