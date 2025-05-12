@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora de Conversión de Divisas</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>📊</text></svg>">
+</head>
+<body>
+    <div class="app-container">
+        <main class="main-content">
+            <div class="theme-switch-wrapper">
+                <label class="theme-switch" for="theme-checkbox">
+                    <input type="checkbox" id="theme-checkbox" />
+                    <div class="slider round">
+                        <span class="icon sun">☀️</span>
+                        <span class="icon moon">🌙</span>
+                    </div>
+                </label>
+            </div>
+
+            <header>
+                <h1>Calculadora de Conversión de Divisas</h1>
+            </header>
+            <div class="source-link-main">
+                <span>Fuente de datos: </span>
+                <a href="https://www.bcentral.cl/inicio" target="_blank" rel="noopener noreferrer">Banco Central de Chile</a>
+            </div>
+
+            <section id="calculadora-section" class="content-section">
+                <h2>Realizar Conversión</h2>
+                <form id="conversion-form">
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label for="origen-indicador">Moneda de Origen:</label>
+                            <select id="origen-indicador">
+                                <option value="uf">UF</option>
+                                <option value="dolar">Dólar Americano (USD)</option>
+                                <option value="euro">Euro (EUR)</option>
+                                <option value="utm">UTM</option>
+                                <option value="Peso">Peso Chileno (CLP)</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="destino-indicador">Moneda de Destino:</label>
+                            <select id="destino-indicador">
+                                <option value="Peso">Peso Chileno (CLP)</option>
+                                <option value="uf">UF</option>
+                                <option value="dolar">Dólar Americano (USD)</option>
+                                <option value="euro">Euro (EUR)</option>
+                                <option value="utm">UTM</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="cantidad-convertir">Cantidad a Convertir:</label>
+                            <input type="number" id="cantidad-convertir" value="1" min="0" step="any">
+                        </div>
+                        <div class="form-group">
+                            <label for="fecha-conversion">Fecha de Cotización:</label>
+                            <input type="date" id="fecha-conversion" required>
+                        </div>
+                    </div>
+                    <button type="submit" class="btn-primary">Convertir</button>
+                </form>
+                <div id="conversion-resultado" class="resultado-area">
+                    <!-- El resultado de la conversión aparecerá aquí -->
+                </div>
+            </section>
+
+            <div id="loading-indicator" class="loading-indicator" style="display: none;">
+                <div class="spinner"></div>
+                Calculando...
+            </div>
+        </main>
+    </div>
+
+    <div id="copy-popup" class="copy-popup">
+        <span id="copy-popup-message"></span>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
