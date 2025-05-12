@@ -39,7 +39,6 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-    // Cargar preferencia de tema al iniciar
     const savedTheme = localStorage.getItem('themePreference');
     const prefersDarkScheme = window.matchMedia('(prefers-color-scheme: dark)').matches;
 
@@ -48,16 +47,24 @@ document.addEventListener('DOMContentLoaded', () => {
     } else if (prefersDarkScheme) {
         setTheme('dark');
     } else {
-        setTheme('light'); // Default
+        setTheme('light');
     }
     // --- Fin Lógica de Tema ---
-
 
     // Configurar fecha por defecto a hoy
     const today = new Date().toISOString().split('T')[0];
     fechaConversionInput.value = today;
 
-    // --- Funciones Auxiliares (sin cambios, excepto si alguna necesita ser consciente del tema) ---
+    // Abrir el selector de fecha al hacer clic en el campo
+    fechaConversionInput.addEventListener('click', function(event) {
+        try {
+            this.showPicker();
+        } catch (error) {
+            console.warn("showPicker() no está disponible o no se pudo ejecutar: ", error);
+        }
+    });
+
+    // --- Funciones Auxiliares ---
     function showLoading() {
         loadingIndicator.style.display = 'flex';
     }
@@ -103,11 +110,29 @@ document.addEventListener('DOMContentLoaded', () => {
         }, 2500);
     }
 
-    function createCopyButton(valueToCopy, container) {
+    function createCopyButton(valueToCopy, parentContainer) {
         const formattedValueForCopy = formatNumber_esCL(valueToCopy, 2, 5); 
+
+        const buttonContainer = document.createElement('div');
+        buttonContainer.className = 'copy-button-container';
+
         const button = document.createElement('button');
-        button.textContent = 'Copiar';
-        button.className = 'copy-button';
+        button.className = 'copy-button-enhanced';
+        
+        const iconSpan = document.createElement('span');
+        iconSpan.className = 'copy-icon';
+        iconSpan.innerHTML = `
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                <path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"/>
+            </svg>
+        `;
+
+        const textSpan = document.createElement('span');
+        textSpan.textContent = 'Copiar Valor';
+
+        button.appendChild(iconSpan);
+        button.appendChild(textSpan);
+        
         button.addEventListener('click', (event) => {
             event.stopPropagation();
             navigator.clipboard.writeText(formattedValueForCopy).then(() => {
@@ -117,7 +142,9 @@ document.addEventListener('DOMContentLoaded', () => {
                 showCopyFeedbackPopup('Error al copiar el valor.', true);
             });
         });
-        container.appendChild(button);
+
+        buttonContainer.appendChild(button);
+        parentContainer.appendChild(buttonContainer);
     }
 
     async function fetchIndicadorValor(indicador, fechaApi) {
@@ -142,10 +169,11 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
     
-    // --- Lógica Calculadora de Conversión (sin cambios) ---
+    // --- Lógica Calculadora de Conversión ---
     conversionForm.addEventListener('submit', async (event) => {
         event.preventDefault();
         showLoading();
+        // Limpiar el área de resultado al inicio de una nueva conversión
         conversionResultadoDiv.innerHTML = ''; 
 
         const origen = origenIndicadorSelect.value;
@@ -200,12 +228,13 @@ document.addEventListener('DOMContentLoaded', () => {
             
             const cantidadFormateada = formatNumber_esCL(cantidad, (origen.toLowerCase() === 'peso' ? 0 : 2), (origen.toLowerCase() === 'peso' ? 0 : 2));
             const resultadoFormateado = formatNumber_esCL(resultadoConversion, 2, 5);
-
+            
             const p = document.createElement('p');
             p.className = 'success';
             p.innerHTML = `${cantidadFormateada} ${origenDisplay} equivalen a <strong>${resultadoFormateado} ${destinoDisplay}</strong> <br>(fecha: ${fechaApi}).`;
-            conversionResultadoDiv.appendChild(p);
-            createCopyButton(resultadoConversion, p);
+            
+            conversionResultadoDiv.appendChild(p); // Añadir primero el texto del resultado
+            createCopyButton(resultadoConversion, conversionResultadoDiv); // Luego añadir el botón de copiar
 
         } catch (error) {
             if (error.message.includes("No se encontraron datos")) {

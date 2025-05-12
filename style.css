@@ -10,13 +10,13 @@
     --border-color: #dee2e6;
     --input-bg-color: #fff;
     --input-border-color: var(--border-color);
-    --select-arrow-color: var(--text-color); /* Color de la flecha del select */
+    --select-arrow-color: var(--text-color);
     --success-color: #28a745;
     --error-color: #dc3545;
     --font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     --border-radius: 8px;
     --box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
-    --box-shadow-darker: 0 5px 15px rgba(0, 0, 0, 0.12); /* Para elementos más prominentes */
+    --box-shadow-darker: 0 5px 15px rgba(0, 0, 0, 0.12);
     --resultado-bg-color: #e9f5fe;
     --resultado-border-color: #bde0fe;
     --resultado-text-strong-color: var(--primary-color);
@@ -29,24 +29,24 @@
 
 body.dark-mode {
     /* Dark Mode Variable Overrides */
-    --primary-color: #0088ff; /* Un azul un poco más brillante para dark mode */
+    --primary-color: #0088ff;
     --primary-hover-color: #339eff;
     --secondary-color: #8c98a4;
-    --background-color: #121212; /* Fondo principal muy oscuro */
-    --surface-color: #1e1e1e; /* Superficies ligeramente más claras */
-    --text-color: #e0e0e0; /* Texto claro */
-    --text-light-color: #b0b0b0; /* Texto secundario claro */
-    --border-color: #3a3a3a; /* Bordes más oscuros */
+    --background-color: #121212;
+    --surface-color: #1e1e1e;
+    --text-color: #e0e0e0;
+    --text-light-color: #b0b0b0;
+    --border-color: #3a3a3a;
     --input-bg-color: #2a2a2a;
     --input-border-color: #4a4a4a;
     --select-arrow-color: var(--text-light-color);
     --box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
     --box-shadow-darker: 0 5px 15px rgba(0, 0, 0, 0.35);
-    --resultado-bg-color: #2c3e50; /* Azul oscuro para resultado */
+    --resultado-bg-color: #2c3e50;
     --resultado-border-color: #34495e;
-    --resultado-text-strong-color: #76c7ff; /* Azul claro para strong */
-    --resultado-text-color: #bdc3c7; /* Texto gris claro */
-    --popup-bg-color: #1abc9c; /* Un verde más adaptado a dark mode */
+    --resultado-text-strong-color: #76c7ff;
+    --resultado-text-color: #bdc3c7;
+    --popup-bg-color: #1abc9c;
     --popup-text-color: #161616;
     --loading-bg-color: rgba(30, 30, 30, 0.95);
     --loading-text-color: var(--text-color);
@@ -65,7 +65,7 @@ body {
     min-height: 100vh;
     padding: 20px;
     box-sizing: border-box;
-    transition: background-color 0.3s ease, color 0.3s ease; /* Transición suave */
+    transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 .app-container {
@@ -81,7 +81,7 @@ body {
 .main-content {
     padding: 30px 40px;
     box-sizing: border-box;
-    position: relative; /* Para posicionar el switch de tema */
+    position: relative;
 }
 
 /* Theme Switch Styles */
@@ -95,8 +95,8 @@ body {
 
 .theme-switch {
     display: inline-block;
-    height: 28px; /* Altura del switch */
-    width: 56px; /* Ancho del switch */
+    height: 28px;
+    width: 56px;
     position: relative;
 }
 
@@ -115,10 +115,10 @@ body {
     bottom: 0;
     background-color: #ccc;
     transition: .4s;
-    border-radius: 28px; /* Para hacerlo redondeado */
+    border-radius: 28px;
     display: flex;
     align-items: center;
-    justify-content: space-between; /* Para los iconos */
+    justify-content: space-between;
     padding: 0 4px;
 }
 body.dark-mode .slider {
@@ -126,10 +126,10 @@ body.dark-mode .slider {
 }
 
 
-.slider:before { /* El círculo que se mueve */
+.slider:before {
     position: absolute;
     content: "";
-    height: 20px; /* Tamaño del círculo */
+    height: 20px;
     width: 20px;
     left: 4px;
     bottom: 4px;
@@ -140,36 +140,27 @@ body.dark-mode .slider {
 }
 
 input:checked + .slider:before {
-    transform: translateX(28px); /* Mover el círculo */
+    transform: translateX(28px);
 }
 
 .slider .icon {
-    font-size: 14px; /* Tamaño de los emojis */
+    font-size: 14px;
     z-index: 1;
     transition: opacity 0.3s ease;
-    user-select: none; /* Evitar que se seleccionen los emojis */
+    user-select: none;
 }
 
-.slider .sun {
-    opacity: 1;
-}
-.slider .moon {
-    opacity: 0;
-}
-
-input:checked + .slider .sun {
-    opacity: 0;
-}
-input:checked + .slider .moon {
-    opacity: 1;
-}
+.slider .sun { opacity: 1; }
+.slider .moon { opacity: 0; }
+input:checked + .slider .sun { opacity: 0; }
+input:checked + .slider .moon { opacity: 1; }
 /* End Theme Switch Styles */
 
 
 .main-content header h1 {
     font-size: 2.2em;
     color: var(--primary-color);
-    margin-top: 50px; /* Más espacio para el switch */
+    margin-top: 50px;
     margin-bottom: 15px;
     text-align: center;
     transition: color 0.3s ease;
@@ -230,15 +221,12 @@ input:checked + .slider .moon {
     border-radius: var(--border-radius);
     font-size: 1em;
     background-color: var(--input-bg-color);
-    color: var(--text-color); /* Asegurar que el texto del input cambie */
+    color: var(--text-color);
     transition: border-color 0.2s, box-shadow 0.2s, background-color 0.3s ease, color 0.3s ease;
     box-sizing: border-box;
 }
 
 .form-group select {
-    /* Para que la flecha del select tome el color correcto en dark mode */
-    /* Esto es un poco un hack y puede no funcionar en todos los navegadores perfectamente */
-    /* La mejor solución sería usar un select personalizado */
     background-image: linear-gradient(45deg, transparent 50%, var(--select-arrow-color) 50%), linear-gradient(135deg, var(--select-arrow-color) 50%, transparent 50%);
     background-position: calc(100% - 20px) calc(1em + 2px), calc(100% - 15px) calc(1em + 2px);
     background-size: 5px 5px, 5px 5px;
@@ -246,29 +234,27 @@ input:checked + .slider .moon {
     -webkit-appearance: none;
     -moz-appearance: none;
     appearance: none;
-    padding-right: 30px; /* Espacio para la flecha personalizada */
+    padding-right: 30px;
 }
-body.dark-mode .form-group select option { /* Estilo de las opciones del select en dark mode */
+body.dark-mode .form-group select option {
     background-color: var(--input-bg-color);
     color: var(--text-color);
 }
-
 
 .form-group input:focus,
 .form-group select:focus {
     outline: none;
     border-color: var(--primary-color);
-    box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25); /* Ajustar el color del shadow si es necesario para dark mode */
+    box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
 }
 body.dark-mode .form-group input:focus,
 body.dark-mode .form-group select:focus {
-    box-shadow: 0 0 0 0.2rem rgba(var(--primary-color-rgb, 0, 123, 255), 0.35); /* Usar variable para color o ajustar opacidad */
+    box-shadow: 0 0 0 0.2rem rgba(var(--primary-color-rgb, 0, 123, 255), 0.35);
 }
-
 
 .btn-primary {
     background-color: var(--primary-color);
-    color: white; /* El texto del botón primario suele ser blanco en ambos modos */
+    color: white;
     border: none;
     padding: 14px 30px;
     font-size: 1.05em;
@@ -280,13 +266,8 @@ body.dark-mode .form-group select:focus {
     width: 100%;
     margin-top: 10px;
 }
-
-.btn-primary:hover {
-    background-color: var(--primary-hover-color);
-}
-.btn-primary:active {
-    transform: translateY(1px);
-}
+.btn-primary:hover { background-color: var(--primary-hover-color); }
+.btn-primary:active { transform: translateY(1px); }
 
 .resultado-area {
     margin-top: 30px;
@@ -296,16 +277,13 @@ body.dark-mode .form-group select:focus {
     border: 1px solid var(--resultado-border-color);
     text-align: center;
     transition: background-color 0.3s ease, border-color 0.3s ease;
+    position: relative;
 }
 .resultado-area p {
-    margin: 0 0 10px 0;
+    margin: 0 0 15px 0;
     font-size: 1.15em;
-    color: var(--resultado-text-color); /* Usar variable general para el texto del resultado */
+    color: var(--resultado-text-color);
     transition: color 0.3s ease;
-}
-.resultado-area p.success {
-    /* No necesitamos un color específico aquí si --resultado-text-color funciona bien */
-    font-weight: 500;
 }
 .resultado-area p.success strong {
     font-weight: 700;
@@ -313,29 +291,46 @@ body.dark-mode .form-group select:focus {
     transition: color 0.3s ease;
 }
 .resultado-area p.error {
-    color: var(--error-color); /* El error puede ser el mismo color */
+    color: var(--error-color);
     font-weight: bold;
 }
 
-.copy-button {
-    background-color: var(--secondary-color);
-    color: white;
-    border: none;
-    padding: 8px 15px;
-    font-size: 0.9em;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.2s;
-    margin-left: 15px;
-    vertical-align: middle;
-}
-.copy-button:hover {
-    background-color: #545b62; /* Podría ser una variable también */
-}
-body.dark-mode .copy-button:hover {
-    background-color: #7a868f;
+/* Nuevos estilos para el botón Copiar y su contenedor */
+.copy-button-container {
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
 }
 
+.copy-button-enhanced {
+    background-color: var(--primary-color);
+    color: white;
+    border: none;
+    padding: 10px 25px;
+    font-size: 1em;
+    font-weight: 500;
+    border-radius: var(--border-radius);
+    cursor: pointer;
+    transition: background-color 0.2s ease-in-out, transform 0.1s ease-in-out, box-shadow 0.2s ease;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+.copy-button-enhanced:hover {
+    background-color: var(--primary-hover-color);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+    transform: translateY(-1px);
+}
+.copy-button-enhanced:active {
+    transform: translateY(0px);
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+.copy-button-enhanced .copy-icon svg {
+    width: 16px;
+    height: 16px;
+    fill: currentColor;
+}
 
 .copy-popup {
     position: fixed;
@@ -346,7 +341,7 @@ body.dark-mode .copy-button:hover {
     color: var(--popup-text-color);
     padding: 12px 25px;
     border-radius: var(--border-radius);
-    box-shadow: var(--box-shadow-darker); /* Usar shadow más oscuro */
+    box-shadow: var(--box-shadow-darker);
     z-index: 1001;
     opacity: 0;
     visibility: hidden;
@@ -355,16 +350,14 @@ body.dark-mode .copy-button:hover {
     min-width: 150px;
     text-align: center;
 }
-
 .copy-popup.show {
     opacity: 1;
     visibility: visible;
     transform: translateX(-50%) translateY(0);
 }
-
 .copy-popup.error {
     background-color: var(--error-color);
-    color: white; /* El texto de error del popup suele ser blanco */
+    color: white;
 }
 
 .loading-indicator {
@@ -400,49 +393,29 @@ body.dark-mode .copy-button:hover {
     100% { transform: rotate(360deg); }
 }
 
-@media (max-width: 768px) { /* Ajustar punto de quiebre para el switch */
+@media (max-width: 768px) {
     .theme-switch-wrapper {
         top: 15px;
         right: 15px;
     }
     .main-content header h1 {
-        margin-top: 60px; /* Ajustar si el switch es más grande o diferente */
+        margin-top: 60px;
     }
 }
 
-
 @media (max-width: 576px) {
-    body {
-        padding: 10px;
-    }
-    .main-content {
-        padding: 20px;
-    }
-    .main-content header h1 {
-        font-size: 1.8em;
-    }
-    .content-section h2 {
-        font-size: 1.4em;
-    }
-    .form-grid {
-        grid-template-columns: 1fr;
-    }
-    .resultado-area p {
-        font-size: 1.05em;
-    }
-    .copy-button {
-        display: block;
-        margin-left: 0;
-        margin-top: 10px;
-        width: 100%;
-    }
+    body { padding: 10px; }
+    .main-content { padding: 20px; }
+    .main-content header h1 { font-size: 1.8em; }
+    .content-section h2 { font-size: 1.4em; }
+    .form-grid { grid-template-columns: 1fr; }
+    .resultado-area p { font-size: 1.05em; }
+    .copy-button-enhanced { width: auto; }
     .copy-popup {
         width: calc(100% - 40px);
         bottom: 20px;
         left: 20px;
         transform: translateY(150%);
     }
-    .copy-popup.show {
-        transform: translateY(0);
-    }
+    .copy-popup.show { transform: translateY(0); }
 }
