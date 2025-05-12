@@ -120,7 +120,7 @@ body {
     align-items: center;
     justify-content: space-between;
     padding: 0 4px;
-    
+
 }
 body.dark-mode .slider {
     background-color: var(--primary-color);
@@ -419,4 +419,9 @@ body.dark-mode .form-group select:focus {
         transform: translateY(150%);
     }
     .copy-popup.show { transform: translateY(0); }
+}
+
+.mensaje-modo {
+    margin-right: 15px;
+    font-size: 13px;
 }
