@@ -1,6 +1,7 @@
 document.addEventListener('DOMContentLoaded', () => {
     // API Base URL
     const API_BASE_URL = "https://mindicador.cl/api";
+    const CURRENCY_API_BASE_URL = "https://cdn.jsdelivr.net/npm/@fawazahmed0/currency-api@2024-03-06/v1";
 
     // Elementos del DOM
     const conversionForm = document.getElementById('conversion-form');
@@ -152,6 +153,23 @@ document.addEventListener('DOMContentLoaded', () => {
             return { valor: 1, unidad_medida: 'Pesos', codigo: 'clp' };
         }
         const url = `${API_BASE_URL}/${indicador}/${fechaApi}`;
+
+        // Handle BOB separately using the new API
+        if (indicador.toLowerCase() === 'bob') {
+            const currencyApiUrl = `${CURRENCY_API_BASE_URL}/currencies/clp.json`;
+            try {
+                const response = await fetch(currencyApiUrl);
+                const data = await response.json();
+                // The date is part of the API response structure for this API
+                if (data && data.clp && data.clp.bob) {
+                    return { valor: 1 / data.clp.bob, unidad_medida: 'Pesos', codigo: 'bob' }; // Convert CLP to BOB
+                }
+            } catch (error) {
+                console.error(`Error fetching BOB data:`, error);
+                throw new Error(`No se encontraron datos para BOB en la fecha solicitada.`);
+            }
+        }
+        
         try {
             const response = await fetch(url);
             if (!response.ok) {
